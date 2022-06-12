@@ -33,7 +33,7 @@ EPOCH_LEN = 1
 endif
 
 ifndef TRANS_LEN
-TRANS_LEN = 10
+TRANS_LEN = 1
 endif
 
 
@@ -46,6 +46,9 @@ LATEST_BACKUP = $(shell ls -a ~/epoch-archive/ | sort -n | tail -1 | tr -dc '0-9
 NEXT_BACKUP = $(shell expr (${LATEST_BACKUP} + 1))
 
 END_EPOCH = $(shell expr ${EPOCH} + ${EPOCH_LEN})
+
+# TODO: Use actual epoch waypoint instead of what is in repo
+#EPOCH_WAYPOINT := $(shell ol query --epoch | cut -d ":" -f 2-3| xargs)
 
 EPOCH_WAYPOINT = $(shell jq -r ".waypoints[0]" ${ARCHIVE_PATH}/${EPOCH}/ep*/epoch_ending.manifest)
 
@@ -164,3 +167,4 @@ cron:
 
 cron-hourly:
 	cd ~/epoch-archive/ && git pull && EPOCH=${LATEST_BACKUP} VERSION=${DB_VERSION} make backup-version zip commit
+
