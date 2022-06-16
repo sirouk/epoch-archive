@@ -149,5 +149,3 @@ After state sync
 2021-03-01T23:58:06.329665Z [state-sync] INFO language/libra-vm/src/libra_transaction_executor.rs:627 Executing block, transaction count: 1 {"first_version":45972973,"name":"execution","txn_id":0}
 ======================================  round is 38408
 ```
-
-+branch sirouk 2022-06-15
